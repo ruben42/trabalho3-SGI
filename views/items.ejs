@@ -1,0 +1,19 @@
+<%- include('head'); -%>
+<main>
+    <div class="jumbotron">
+        <h2>Your Items</h2>
+        <ul>
+            <% items.forEach(item => { %>
+                <li>
+                    <a href="/item/<%= item._id %>"><%= item.title %></a>&nbsp;
+                    <form action="/item/<%= item._id %>/delete" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <br>
+                        <br>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</main>
+<%- include('foot'); -%>

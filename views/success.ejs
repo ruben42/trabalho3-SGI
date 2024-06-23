@@ -1,0 +1,12 @@
+<%- include('head'); -%>
+<main>
+    <div class="jumbotron">
+        <p class="lead">Authorization Successful!</p>
+        <hr class="my-4">
+        <p>Welcome, <%= user.displayName %>!</p>
+        <a href="/signup" class="btn btn-primary">Create PassKey</a>
+        <a href="/create" class="btn btn-primary">Create New Item</a>
+        <a href="/items" class="btn btn-secondary">View Your Items</a>
+    </div>
+</main>
+<%- include('foot'); -%>

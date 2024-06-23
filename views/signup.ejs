@@ -1,0 +1,58 @@
+<%- include('head'); -%>
+<main>
+    <div class="jumbotron">
+        <h2>Create PassKey with Windows Hello</h2>
+        <hr class="my-4">
+        <form id="signup-form" action="/signup" method="POST">
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" value="<%= displayName %>" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" value="<%= email %>" required>
+            </div>
+            <div class="form-group">
+                <label for="publicKey">Public Key:</label>
+                <input type="text" class="form-control" id="publicKey" name="publicKey">
+            </div>
+            <button type="button" class="btn btn-primary" id="createPublicKeyBtn">Create PassKey</button>
+        </form>
+    </div>
+</main>
+
+<script>
+    document.getElementById('createPublicKeyBtn').addEventListener('click', async () => {
+        try {
+            // PublicKey generation by Windows Hello
+            const credential = await navigator.credentials.create({
+                publicKey: {
+                    rp: { name: 'Your Website' },
+                    user: {
+                        id: new Uint8Array(16),
+                        name: '<%= email %>',
+                        displayName: '<%= displayName %>'
+                    },
+                    challenge: new Uint8Array(32),
+                    pubKeyCredParams: [
+                        { type: 'public-key', alg: -7 } // Algorithm Specification for Windows Hello (ECDSA)
+                    ],
+                    timeout: 60000,
+                    attestation: 'direct'
+                }
+            });
+
+            // Extract and encode the publicKey to send to the server
+            const publicKey = JSON.stringify(credential);
+            document.getElementById('publicKey').value = publicKey;
+
+            // Send publicKey to server
+            document.getElementById('signup-form').submit();
+
+        } catch (error) {
+            console.error(error);
+            alert('Error creating PassKey with Windows Hello');
+        }
+    });
+</script>
+<%- include('foot'); -%>

@@ -1,0 +1,58 @@
+<%- include('head'); -%>
+<main>
+    <div class="jumbotron">
+        <p class="lead">Access your Google Profile</p>
+        <hr class="my-4">
+        <p>Current Date: <%= date_tag %></p>
+        <p><%= message_tag %></p>
+        <% if (showPasskeyOption) { %>
+            <button id="loginPassKeyBtn" type="button" class="btn btn-primary">Login with PassKey</button>
+        <% } else { %>
+            <p>PassKey option not available for this user.</p>
+        <% } %>
+        <br>
+        <br>
+        <p>Or</p>
+        <br>
+        <a class="btn btn-primary" href="/login" role="button"><span class="fa fa-google"></span> Login with Google</a>
+    </div>
+</main>
+<%- include('foot'); -%>
+
+<script>
+    document.getElementById('loginPassKeyBtn').addEventListener('click', async () => {
+        try {
+            // Simulate login process with PassKey
+            // Here you can start the WebAuthn process to login with the user's public key
+
+            // Get the user's public key
+            const publicKey = "<%= user %>";
+    
+            // Start the WebAuthn process
+            const credential = await navigator.credentials.get({
+                publicKey: {
+                    challenge: new Uint8Array(32), // Simulate a suitable challenge
+                    allowCredentials: [{
+                        type: 'public-key',
+                        id: Uint8Array.from(atob(publicKey), c => c.charCodeAt(0))
+                    }],
+                    timeout: 60000 // Timeout for the process
+                }
+            });
+    
+            // Check whether the operation was successful
+            if (credential) {
+                console.log('WebAuthn login successful:', credential);
+    
+                // Redirect to success page
+                window.location.href = '/success';
+            } else {
+                console.log('WebAuthn login failed');
+            }
+    
+        } catch (error) {
+            console.error('Error initiating PassKey login:', error);
+            alert('Error initiating PassKey login');
+        }
+    });
+</script>
