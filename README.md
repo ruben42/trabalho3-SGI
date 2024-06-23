@@ -57,41 +57,41 @@ ejs (ver ficheiros *login.ejs* e *signup.ejs* na pasta *views*), sob a forma de 
 - Tendo em conta este contexto, a aplicação deverá implementar as seguintes
 funcionalidades:
 
-1. A página de autenticação da aplicação deve começar por sugerir entrar com o
-perfil Google, ou com uma passkey que, numa fase inicial, não existe.
-2. Assim, como não existe passkey registada, a autenticação deverá ser feita
-com a conta Gmail, o que leva à criação de um utilizador local com o perfil
-importado (já realizado no Trabalho Nº1).
-3. Depois da autenticação, deve ser proposto ao utilizador, logo na página de
-success, a criação e registo de uma PassKey , através de um link para a rota
-de *signup* . Esta passkey irá ficar associada ao perfil do utilizador.
-4. Ao entrar nessa rota, é apresentado ao utilizador uma form para associação
-ao perfil, que deverá ter campos para um nome de utilizador (fullname) e um
-email, devendo idealmente a form já vir pré preenchida com essa informação,
-extraída do perfil do utilizador autenticado no ponto 1.
-5. Ao escolher essa opção, quando é acionado o botão submit, o browser irá
-abrir um pop-up onde pergunta que tipo de PassKey o utilizador quer criar.
-Numa primeira fase, deverá ser escolhido o Windows Hello.
-6. Ao submeter essa informação, a rota de registo deve começar por procurar um
-utilizador já existente na Base de Dados, usando o email fornecido como índex
-de procura.
-7. No caso de o utilizador existir, a chave pública gerada pelo suporte de
-autenticação do Windows deverá ser transferida para o servidor e ser
-armazenada num novo campo do perfil do utilizador já criado (ver código do
-exemplo no ficheiro *routes/auth.js*).
-8. Simultaneamente, o browser invoca o sistema operativo para armazenar a
-Passkey do tipo escolhido, no contexto de autenticação local do utilizador.
-Esta PassKey só pode depois ser utilizada mediante a autenticação biométrica
-(eventualmente também um PIN) que o utilizador utiliza para entrar no seu
-sistema (e.g.: Windows Hello).
-9. A partir do registo desta nova forma de autenticação, quando o utilizador
-entrar no site sem estar autenticado, já pode escolher o login com PassKey. O
-browser sugere-lhe então a PassKey armazenada, e se for aceite, será ativado
-o protocolo de autenticação do WebAuthn.
-10. A chave pública armazenada no perfil do utilizador (ponto 7) é utilizada para
-validar o challenge que o browser irá assinar.
-11. Depois de autenticado, o utilizador será admitido com o seu perfil do Google,
-tendo acesso a todos os itens que já tiver criado anteriormente.
+    1. A página de autenticação da aplicação deve começar por sugerir entrar com o
+    perfil Google, ou com uma passkey que, numa fase inicial, não existe.
+    2. Assim, como não existe passkey registada, a autenticação deverá ser feita
+    com a conta Gmail, o que leva à criação de um utilizador local com o perfil
+    importado (já realizado no Trabalho Nº1).
+    3. Depois da autenticação, deve ser proposto ao utilizador, logo na página de
+    success, a criação e registo de uma PassKey , através de um link para a rota
+    de *signup* . Esta passkey irá ficar associada ao perfil do utilizador.
+    4. Ao entrar nessa rota, é apresentado ao utilizador uma form para associação
+    ao perfil, que deverá ter campos para um nome de utilizador (fullname) e um
+    email, devendo idealmente a form já vir pré preenchida com essa informação,
+    extraída do perfil do utilizador autenticado no ponto 1.
+    5. Ao escolher essa opção, quando é acionado o botão submit, o browser irá
+    abrir um pop-up onde pergunta que tipo de PassKey o utilizador quer criar.
+    Numa primeira fase, deverá ser escolhido o Windows Hello.
+    6. Ao submeter essa informação, a rota de registo deve começar por procurar um
+    utilizador já existente na Base de Dados, usando o email fornecido como índex
+    de procura.
+    7. No caso de o utilizador existir, a chave pública gerada pelo suporte de
+    autenticação do Windows deverá ser transferida para o servidor e ser
+    armazenada num novo campo do perfil do utilizador já criado (ver código do
+    exemplo no ficheiro *routes/auth.js*).
+    8. Simultaneamente, o browser invoca o sistema operativo para armazenar a
+    Passkey do tipo escolhido, no contexto de autenticação local do utilizador.
+    Esta PassKey só pode depois ser utilizada mediante a autenticação biométrica
+    (eventualmente também um PIN) que o utilizador utiliza para entrar no seu
+    sistema (e.g.: Windows Hello).
+    9. A partir do registo desta nova forma de autenticação, quando o utilizador
+    entrar no site sem estar autenticado, já pode escolher o login com PassKey. O
+    browser sugere-lhe então a PassKey armazenada, e se for aceite, será ativado
+    o protocolo de autenticação do WebAuthn.
+    10. A chave pública armazenada no perfil do utilizador (ponto 7) é utilizada para
+    validar o challenge que o browser irá assinar.
+    11. Depois de autenticado, o utilizador será admitido com o seu perfil do Google,
+    tendo acesso a todos os itens que já tiver criado anteriormente.
 
 A entrega deste trabalho deverá ser realizada até **24 de Junho de 2024**, devendo a sua
 defesa decorrer até **28 de Junho de 2024**.
