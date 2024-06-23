@@ -12,7 +12,7 @@ Para a realização desta prova de conceito, deverão previamente ser realizados
 passos:
 
 - Compreensão do funcionamento do protocolo de autenticação Passwordless
-WebAuthn, cujo princípio de funcionamento foi descrito nas aulas (Ver Cap. II - slides
+WebAuthn, cujo princípio de funcionamento foi descrito nas aulas (Ver [Cap. II](https://moodle.ensinolusofona.pt/pluginfile.php/829828/mod_resource/content/0/IM-02-IdMgmt.pdf) - slides
 20 - 22), sendo aconselhável ler com atenção a documentação disponibilizadas no
 site do WebAuthn.
 - Para uma experimentação rápida desta funcionalidade, sugere-se testar o exemplo
