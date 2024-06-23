@@ -14,23 +14,23 @@ passos:
 - Compreensão do funcionamento do protocolo de autenticação Passwordless
 WebAuthn, cujo princípio de funcionamento foi descrito nas aulas (Ver [Cap. II](https://moodle.ensinolusofona.pt/pluginfile.php/829828/mod_resource/content/0/IM-02-IdMgmt.pdf) - slides
 20 - 22), sendo aconselhável ler com atenção a documentação disponibilizadas no
-site do WebAuthn.
-- Para uma experimentação rápida desta funcionalidade, sugere-se testar o exemplo
+site do [WebAuthn](https://webauthn.guide/).
+- Para uma experimentação rápida desta funcionalidade, sugere-se testar o [exemplo](https://webauthn.io/)
 fornecido online e analisar exemplos de código em várias linguagens (aqui em
-JavaScript).
+[JavaScript](https://github.com/fido-alliance/webauthn-demo)).
 - Para uma boa compreensão da extensão do WebAuthn ao conceito de Passkey, que
-que será utilizado neste trabalho, é aconselhável ler esta documentação da Google
+que será utilizado neste trabalho, é aconselhável ler esta [documentação](https://developers.google.com/identity/passkeys?hl=pt-br) da Google
 sobre o tema, pois foi um dos primeiros a implementar o conceito. A Microsoft, a
 Apple, e o Github (e muitos mais…) também suportam este protocolo.
 - Para a realização deste trabalho, sugere-se partir do Trabalho Nº2, ao qual deverá
-ser adicionada a nova strategy passport-fido-webauthn, que implementa o protocolo
+ser adicionada **a nova strategy** [passport-fido-webauthn](https://www.passportjs.org/packages/passport-fido2-webauthn/), que implementa o protocolo
 WebAuthn / Passkey como autenticação.
-- Na página da passport-fido-webauthn é fornecido um exemplo de implementação
+- Na página da [passport-fido-webauthn](https://www.passportjs.org/packages/passport-fido2-webauthn/) é fornecido um [exemplo de implementação](https://github.com/passport/todos-express-webauthn/tree/master)
 com esta biblioteca, que pode ser utilizado como uma referência para a extensão a
 desenvolver. É recomendado instalá-lo e tentar perceber como funciona, mas como
 as funcionalidades deste exemplo são restritas, é recomendado ter algum cuidado na
 reutilização desse código.
-- Aconselha-se também a leitura deste blog, que explica a forma como são geradas e
+- Aconselha-se também a leitura deste [blog](https://www.corbado.com/blog/how-to-delete-passkeys-windows-10), que explica a forma como são geradas e
 armazenadas no Windows as chaves associadas às PassKeys. Fornece também
 uma ferramenta para listar e remover PassKeys já armazenadas.
 - Para a implementação, sugere-se partir do código do Trabalho Nº2 e adicionar
@@ -41,19 +41,19 @@ Uma vez compreendidos e realizados estes pontos, descrevem-se seguidamente as
 funcionalidades que deverão ser implementadas neste tema do Trabalho 3.
 
 - Como pode ser visto no exemplo acima referido, é necessário adicionar uma nova
-strategy associada à autenticação com PassKeys (ver o ficheiro routes/auth.js).
+strategy associada à autenticação com PassKeys (ver o ficheiro *routes/auth.js*).
 - É, portanto, necessário adicionar novas rotas para os passos de registo, autenticação
 e challenge, assim como as forms ejs associadas, para as quais podem ser utilizadas
 como base as do exemplo fornecido.
 - Uma forma de agregar uma strategy de autenticação com uma strategy de
-autorização é explicada nesta documentação do Passport.
+autorização é explicada [nesta documentação](https://www.passportjs.org/concepts/delegated-authorization/) do Passport.
 - É de salientar que a gestão das PassKeys necessita da colaboração do ambiente de
 execução do browser e do Windows, que é responsável pelo armazenamento seguro
 e utilização da chave privada do utilizador. O código JavaScript que realiza a
-interação com o browser está localizado na pasta public/js, devendo ser migrado
+interação com o browser está localizado na pasta *public/js*, devendo ser migrado
 para a vossa aplicação. Como corre no browser, é invocado diretamente nas forms
-ejs (ver ficheiros login.ejs e signup.ejs na pasta views), sob a forma de um
-EventListener.
+ejs (ver ficheiros *login.ejs* e *signup.ejs* na pasta *views*), sob a forma de um
+*EventListener*.
 - Tendo em conta este contexto, a aplicação deverá implementar as seguintes
 funcionalidades:
 
@@ -64,7 +64,7 @@ com a conta Gmail, o que leva à criação de um utilizador local com o perfil
 importado (já realizado no Trabalho Nº1).
 3. Depois da autenticação, deve ser proposto ao utilizador, logo na página de
 success, a criação e registo de uma PassKey , através de um link para a rota
-de signup . Esta passkey irá ficar associada ao perfil do utilizador.
+de *signup* . Esta passkey irá ficar associada ao perfil do utilizador.
 4. Ao entrar nessa rota, é apresentado ao utilizador uma form para associação
 ao perfil, que deverá ter campos para um nome de utilizador (fullname) e um
 email, devendo idealmente a form já vir pré preenchida com essa informação,
@@ -78,7 +78,7 @@ de procura.
 7. No caso de o utilizador existir, a chave pública gerada pelo suporte de
 autenticação do Windows deverá ser transferida para o servidor e ser
 armazenada num novo campo do perfil do utilizador já criado (ver código do
-exemplo no ficheiro routes/auth.js).
+exemplo no ficheiro *routes/auth.js*).
 8. Simultaneamente, o browser invoca o sistema operativo para armazenar a
 Passkey do tipo escolhido, no contexto de autenticação local do utilizador.
 Esta PassKey só pode depois ser utilizada mediante a autenticação biométrica
