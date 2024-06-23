@@ -1,6 +1,8 @@
-## Trabalho Nº 3
+# Trabalho Nº 3
 
 ## Gestão de Identidade Avançada
+
+### Tema 2
 
 O objetivo deste tema é realizar uma prova de conceito para demonstrar a autenticação com
 o protocolo WebAuthn / PassKey, em conjunto com uma outra baseada em OAuth2, com
