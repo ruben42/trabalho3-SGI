@@ -9,50 +9,50 @@ gestão integrada dos perfis de utilizador.
 Para a realização desta prova de conceito, deverão previamente ser realizados os seguintes
 passos:
 
-• Compreensão do funcionamento do protocolo de autenticação Passwordless
+- Compreensão do funcionamento do protocolo de autenticação Passwordless
 WebAuthn, cujo princípio de funcionamento foi descrito nas aulas (Ver Cap. II - slides
 20 - 22), sendo aconselhável ler com atenção a documentação disponibilizadas no
 site do WebAuthn.
-• Para uma experimentação rápida desta funcionalidade, sugere-se testar o exemplo
+- Para uma experimentação rápida desta funcionalidade, sugere-se testar o exemplo
 fornecido online e analisar exemplos de código em várias linguagens (aqui em
 JavaScript).
-• Para uma boa compreensão da extensão do WebAuthn ao conceito de Passkey, que
+- Para uma boa compreensão da extensão do WebAuthn ao conceito de Passkey, que
 que será utilizado neste trabalho, é aconselhável ler esta documentação da Google
 sobre o tema, pois foi um dos primeiros a implementar o conceito. A Microsoft, a
 Apple, e o Github (e muitos mais…) também suportam este protocolo.
-• Para a realização deste trabalho, sugere-se partir do Trabalho Nº2, ao qual deverá
+- Para a realização deste trabalho, sugere-se partir do Trabalho Nº2, ao qual deverá
 ser adicionada a nova strategy passport-fido-webauthn, que implementa o protocolo
 WebAuthn / Passkey como autenticação.
-• Na página da passport-fido-webauthn é fornecido um exemplo de implementação
+- Na página da passport-fido-webauthn é fornecido um exemplo de implementação
 com esta biblioteca, que pode ser utilizado como uma referência para a extensão a
 desenvolver. É recomendado instalá-lo e tentar perceber como funciona, mas como
 as funcionalidades deste exemplo são restritas, é recomendado ter algum cuidado na
 reutilização desse código.
-• Aconselha-se também a leitura deste blog, que explica a forma como são geradas e
+- Aconselha-se também a leitura deste blog, que explica a forma como são geradas e
 armazenadas no Windows as chaves associadas às PassKeys. Fornece também
 uma ferramenta para listar e remover PassKeys já armazenadas.
-• Para a implementação, sugere-se partir do código do Trabalho Nº2 e adicionar
+- Para a implementação, sugere-se partir do código do Trabalho Nº2 e adicionar
 progressivamente as novas funcionalidades. Se o código estiver no Github, é
 aconselhável fazer um fork antes de o começar a modificar.
 
 Uma vez compreendidos e realizados estes pontos, descrevem-se seguidamente as
 funcionalidades que deverão ser implementadas neste tema do Trabalho 3.
 
-• Como pode ser visto no exemplo acima referido, é necessário adicionar uma nova
+- Como pode ser visto no exemplo acima referido, é necessário adicionar uma nova
 strategy associada à autenticação com PassKeys (ver o ficheiro routes/auth.js).
-• É, portanto, necessário adicionar novas rotas para os passos de registo, autenticação
+- É, portanto, necessário adicionar novas rotas para os passos de registo, autenticação
 e challenge, assim como as forms ejs associadas, para as quais podem ser utilizadas
 como base as do exemplo fornecido.
-• Uma forma de agregar uma strategy de autenticação com uma strategy de
+- Uma forma de agregar uma strategy de autenticação com uma strategy de
 autorização é explicada nesta documentação do Passport.
-• É de salientar que a gestão das PassKeys necessita da colaboração do ambiente de
+- É de salientar que a gestão das PassKeys necessita da colaboração do ambiente de
 execução do browser e do Windows, que é responsável pelo armazenamento seguro
 e utilização da chave privada do utilizador. O código JavaScript que realiza a
 interação com o browser está localizado na pasta public/js, devendo ser migrado
 para a vossa aplicação. Como corre no browser, é invocado diretamente nas forms
 ejs (ver ficheiros login.ejs e signup.ejs na pasta views), sob a forma de um
 EventListener.
-• Tendo em conta este contexto, a aplicação deverá implementar as seguintes
+- Tendo em conta este contexto, a aplicação deverá implementar as seguintes
 funcionalidades:
 
 1. A página de autenticação da aplicação deve começar por sugerir entrar com o
