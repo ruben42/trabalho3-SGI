@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     accessToken: String,
     expiryDate: String,
-    publicKey: Object // Armazena a chave pública WebAuthn 
+    publicKey: Object // Stores the WebAuthn public key 
 });
 
 const User = mongoose.model('googleusers', userSchema);
