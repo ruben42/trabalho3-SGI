@@ -5,7 +5,7 @@ const base64url = require('base64url');
 
 // Route to display the PassKey creation form (Windows Hello)
 router.get('/signup', isAuth, (req, res) => {
-    // Prepara dados do usuário para pré-preenchimento do formulário
+    // Prepares user data for form pre-filling
     const { displayName, email } = req.user;
     res.render('signup', { displayName, email });
 });
