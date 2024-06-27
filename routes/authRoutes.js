@@ -14,13 +14,13 @@ router.get('/', (req, res) => {
             dateStyle: 'full',
             timeStyle: 'long'
         }).format(new Date());
-        // Definir o objeto 'user' para evitar o erro 'user is not defined' no index.ejs
-        const user = req.user || { publicKey: '' }; // Definir um objeto vazio se o usuário não estiver autenticado
+        // Define 'user' object to avoid 'user is not defined' error in index.ejs
+        const user = req.user || { publicKey: '' }; // Set an empty object if the user is not authenticated
         res.render('index', {
             date_tag: date,
             message_tag: 'Access your Google Account',
             showPasskeyOption: true, // Add this variable to show the passkey option
-            user: user.publicKey // Passar o objeto 'user' para o arquivo index.ejs 
+            user: user.publicKey // Pass the 'user' object to the index.ejs file 
         });
     }
 });
