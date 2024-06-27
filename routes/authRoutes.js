@@ -110,4 +110,41 @@ router.get('/auth/google/callback',
         res.redirect(returnTo || '/success');
     });
 
+// PassKey login route (GET)
+router.get('/login/passkey', isNotAuth, async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.user._id }); // Finds the authenticated user in the collection
+        if (user && user.publicKey) {
+            const publicKey = user.publicKey;
+
+            // Start the WebAuthn process
+            const credential = await navigator.credentials.get({
+                publicKey: {
+                    challenge: new Uint8Array(32), // Simulate a suitable challenge
+                    allowCredentials: [{
+                        type: 'public-key',
+                        id: Uint8Array.from(atob(publicKey), c => c.charCodeAt(0))
+                    }],
+                    timeout: 60000 // Timeout for the process
+                }
+            });
+
+            // Check whether the operation was successful
+            if (credential) {
+                console.log('WebAuthn login successful:', credential);
+                res.redirect('/success');
+            } else {
+                console.log('WebAuthn login failed');
+                res.redirect('/error');
+            }
+        } else {
+            console.error('Public Key not found for the user');
+            res.redirect('/error');
+        }
+    } catch (error) {
+        console.error('Error during PassKey login:', error);
+        res.redirect('/error');
+    }
+});
+
 module.exports = router;
